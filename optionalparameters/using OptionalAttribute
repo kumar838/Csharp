@@ -1,0 +1,28 @@
+// Optional parameters
+/// method 3-  Making method parameters optional by using OptionalAttribute
+using System;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+
+        //AddNumbers(10, 20);  // output: 30
+        AddNumbers(10, 20, new int[] { 20, 30, 40 });  // output: 120
+    }
+
+    public static void AddNumbers(int A, int B, [Optional] int[] restofvalues)
+    {
+        int sum = A + B;
+        if (restofvalues != null)
+        {
+            foreach (int i in restofvalues)
+            {
+                sum += i;
+            }
+        }
+        Console.WriteLine(sum);
+    }
+}
