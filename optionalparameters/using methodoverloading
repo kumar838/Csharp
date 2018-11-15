@@ -1,0 +1,34 @@
+
+// Optional parameters
+/// method 2- using methodoverloading
+using System;
+using System.Collections.Generic; // For list
+using System.Collections.ObjectModel; // For AsReadOnly() method
+
+class Program
+{
+    static void Main(string[] args)
+    {
+      
+        //AddNumbers(10, 20);  // output: 30
+        AddNumbers(10, 20,new int[] { 20, 30, 40 });  // output: 120
+    }
+    /// methodoverloading here
+    public static void AddNumbers(int A, int B)  
+    {
+        AddNumbers(A, B, null);
+    }
+     public static void AddNumbers(int A,int B, int[] restofvalues)  
+    {
+        int sum = A + B;
+        if (restofvalues != null) {
+            foreach (int i in restofvalues) { 
+                sum += i;
+                    }
+                }
+          Console.WriteLine(sum);
+     }
+}
+
+
+
