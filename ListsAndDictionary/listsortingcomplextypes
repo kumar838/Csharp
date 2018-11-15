@@ -1,0 +1,105 @@
+
+//List complex type sorting
+using System;
+using System.Collections.Generic; // For list
+using System.Linq;
+class Program
+{
+    static void Main(string[] args)
+    {
+
+        Customer Customer1 = new Customer()
+        { id = 1, name = "kumar", age = 27, salary = 20000 };
+
+        Customer Customer2 = new Customer()
+        { id = 2, name = "suresh", age = 28, salary = 10000 };
+
+        Customer Customer3 = new Customer()
+        { id = 3, name = "rajesh", age = 26, salary = 50000 };
+
+       
+        List<Customer> Customers = new List<Customer>();   //"Customer" is complex type
+
+        Customers.Add(Customer1);
+        Customers.Add(Customer2);
+        Customers.Add(Customer3);
+
+        Customers.Sort();
+
+        foreach (Customer c in Customers)
+        {
+            // Console.WriteLine(c.name);
+            // Console.WriteLine(c.salary);
+            Console.WriteLine(c.age);
+        }
+
+        // (2) method (userdefined method)
+        SortBydata SortBydata = new SortBydata();
+        Customers.Sort(SortBydata);
+
+
+         foreach (Customer c in Customers)
+        {
+            Console.WriteLine(c.name);
+            //Console.WriteLine(c.salary);
+            //Console.WriteLine(c.age);
+        }
+        
+        
+        /// (3) method - using deligates
+            Customers.Sort(delegate (Customer c1, Customer c2)
+            {
+                return (c1.id.CompareTo(c2.id));
+            });
+
+        foreach (Customer c in Customers)
+        {
+            Console.WriteLine("using Deligate"+ c.name);
+            //Console.WriteLine(c.salary);
+            //Console.WriteLine(c.age);
+        }
+
+
+        /// (4) method - using lamda function  (simplest method)
+        Customers.Sort((x,y) => x.id.CompareTo(y.id));
+        foreach (Customer c in Customers)
+        {
+            Console.WriteLine("using lamda expressions" + c.name);
+            //Console.WriteLine(c.salary);
+            //Console.WriteLine(c.age);
+        }
+
+    }
+
+}
+
+public class Customer : IComparable<Customer>   //(1) method : IComparable is an built-in interface
+{
+    public int id { get; set; }
+    public string name { get; set; }
+    public int age { get; set; }
+    public int salary { get; set; }
+
+    public int CompareTo(Customer obj) {   //(1) method 
+       // return this.name.CompareTo(obj.name);
+        // return this.salary.CompareTo(obj.salary);
+        return this.age.CompareTo(obj.age);
+    }
+
+}
+
+
+// method (2) -recomended
+public class SortBydata : IComparer<Customer>  //IComparer is an built-in interface
+{
+    public int Compare(Customer x, Customer y)
+    {
+        return x.name.CompareTo(y.name);      // for Accending order
+        // return y.name.CompareTo(x.name);  // for descending order
+    }
+}
+
+
+
+
+

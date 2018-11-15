@@ -1,0 +1,65 @@
+//List convertions
+using System;
+using System.Collections.Generic; // For list
+using System.Linq; // for tolist,todictionary
+public class Program
+    {
+    static void Main(string[] args)
+    {
+
+        Customer Customer1 = new Customer()
+        { id = 1, name = "kumar", age = 27, salary = 20000 };
+
+        Customer Customer2 = new Customer()
+        { id = 2, name = "suresh", age = 28, salary = 30000 };
+
+        Customer Customer3 = new Customer()
+        { id = 3, name = "rajesh", age = 26, salary = 50000 };
+
+
+
+        /// Converstions
+        /// (1) From List to Array
+        List<Customer> listCustomers = new List<Customer>();   
+
+        listCustomers.Add(Customer1);
+        listCustomers.Add(Customer2);
+        listCustomers.Add(Customer3);
+        listCustomers.ToArray();
+
+        foreach (Customer cust in listCustomers) {
+
+            Console.WriteLine("Customers{0} : id:{0},name:{1},age:{2}", cust.id, cust.name, cust.age);
+        }
+
+        /// (2) From List to Distionary
+        Dictionary<int, Customer> dis = listCustomers.ToDictionary(X => X.id);
+
+        foreach (KeyValuePair<int,Customer> cust in dis)
+        {
+            Customer c = cust.Value;
+            Console.WriteLine("Customers{0} : id:{0},name:{1},age:{2}", c.id, c.name, c.age);
+        }
+
+        /// (3) From Array to list
+        Customer[] Customerarray = new Customer[3];
+        Customerarray[0] = Customer1;
+        Customerarray[1] = Customer2;
+        Customerarray[2] = Customer3;
+     List<Customer> CustList= Customerarray.ToList();
+        foreach (Customer cust in Customerarray)
+        {
+            Console.WriteLine("Customers{0} : id:{0},name:{1},age:{2}", cust.id, cust.name, cust.age);
+        }
+
+    }
+}
+
+public class Customer
+{
+    public int id { get; set; }
+    public string name { get; set; }
+    public int age { get; set; }
+    public int salary { get; set; }
+}
+

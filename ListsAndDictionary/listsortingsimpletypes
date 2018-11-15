@@ -1,0 +1,49 @@
+//List Sorting functions for simple types(int,string..)
+using System;
+using System.Collections.Generic; // For list
+using System.Linq; // for tolist,todictionary
+public class Program
+    {
+      static void Main(string[] args)
+       {
+         /// sorting numbers
+        List<int> Numbers = new List<int>(){ 8, 4, 6, 7, 0, 9, 2, 5 };
+
+        /// sort Assending oreder
+         Numbers.Sort(); // 0 2 4 5 6 7 8 9
+        //Numbers.Reverse(); // 5 2 9 0 7 6 4 8
+        foreach (int number in Numbers) {
+            Console.Write(number + " ");
+            // o/P: 0 2 4 5 6 7 8 9
+        }
+
+        //Numbers.Reverse(); // 9 8 7 6 5 4 2 0
+
+        /// sorting Strings
+        List<string> Strings = new List<string>() {"L","S","K","A","F","M","D"};
+
+        Strings.Sort();
+        foreach (string String in Strings)
+        {
+            Console.Write(String + " ");
+            // o/P: A D F K L M S
+        }
+
+        Strings.Reverse();
+        foreach (string String in Strings)
+        {
+            Console.Write(String + " ");
+            // o/P: S M L K F D A
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+

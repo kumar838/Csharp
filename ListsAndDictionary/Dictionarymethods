@@ -1,0 +1,86 @@
+//Dictionary
+using System;
+using System.Collections.Generic; // For Dictionary
+using System.Linq; // for Count()
+class Program
+    {
+    static void Main(string[] args)
+    {
+
+        Customer Customer1 = new Customer()
+        { id = 1, name = "kumar", age = 27, salary = 20000 };
+
+        Customer Customer2 = new Customer()
+        { id = 2, name = "suresh", age = 28, salary = 30000 };
+
+        Customer Customer3 = new Customer()
+        { id = 3, name = "rajesh", age = 26, salary = 50000 };
+
+        Dictionary<int, Customer> Dictvar = new Dictionary<int, Customer>();
+
+        Dictvar.Add(Customer1.id, Customer1);
+        Dictvar.Add(Customer2.id, Customer2);
+        Dictvar.Add(Customer3.id, Customer3);
+
+
+        /// Count method:
+        Console.WriteLine("Total Records:{0}", Dictvar.Count); // Total Records:3
+
+        // Count() avialble in  using System.Linq; name space
+        Console.WriteLine("Total Records:{0}", Dictvar.Count()); // Total Records:3 (without parameter )
+
+        Console.WriteLine("Total Records:{0}", Dictvar.Count(res => res.Value.salary > 25000)); // Total Records:2 (with parameter )
+
+        /// TryGetValue
+        Customer cust;
+        if (Dictvar.TryGetValue(1, out cust))
+        {
+            Console.WriteLine("id:{0}-name:{1}-age{2}-salary{3}", cust.id, cust.name, cust.age, cust.salary);
+        }
+        else
+        {
+            Console.WriteLine("key not Found");
+        }
+
+
+        ///Remove() syntax:  Dictvar.Remove(key);
+        //Dictvar.Remove(1);  // if key not avialble nothing happen
+
+        /// to remove all keys and values from distionary we use 
+        //Dictvar.Clear();
+
+
+        // Convert An Array into A Dictionary
+
+        /*   Customer[] Arraydata = new Customer[3];
+           Arraydata[0] = Customer1;
+           Arraydata[1] = Customer2;
+           Arraydata[2] = Customer3;
+
+           Dictionary<int, Customer> dictdata = Arraydata.ToDictionary(data => data.id, data=>data);
+
+           foreach (KeyValuePair<int, Customer> allcustomers in dictdata)
+           {
+               Customer custr = allcustomers.Value;
+               Console.WriteLine("id:{0}-name:{1}-age:{2}-salary:{3}", custr.id, custr.name, custr.age, custr.salary);
+
+           }
+           */
+
+    }
+}
+
+public class Customer
+{
+    public int    id    {get; set;}
+    public string name  {get; set;}
+    public int    age   {get; set;}
+    public int    salary{get; set;}
+}
+
+
+
+
+
+
+

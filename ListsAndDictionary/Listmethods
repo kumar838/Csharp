@@ -1,0 +1,84 @@
+//Dictionary
+using System;
+using System.Collections.Generic; // For list
+class Program
+    {
+    static void Main(string[] args)
+    {
+
+        Customer Customer1 = new Customer()
+        { id = 1, name = "kumar", age = 27, salary = 20000 };
+
+        Customer Customer2 = new Customer()
+        { id = 2, name = "suresh", age = 28, salary = 30000 };
+
+        Customer Customer3 = new Customer()
+        { id = 3, name = "rajesh", age = 26, salary = 50000 };
+
+        List<Customer> Customers = new List<Customer>();   
+
+        Customers.Add(Customer1);
+        Customers.Add(Customer2);
+        Customers.Add(Customer3);
+
+        /// (1) Contains(); it returns true or false return type bool
+        if (Customers.Contains(Customer3))
+        {
+            Console.WriteLine("Customer3 found");  //o/p: Customer3 found
+        }
+        else
+        {
+            Console.WriteLine("Customer3 Not found");
+        }
+
+
+        /// (2) Exists(); it returns true or false return type bool it is 'predicate' means use 'lamda function'
+        //  if (Customers.Exists(cust => cust.name.startWith("s")))
+        if (Customers.Exists(cust => cust.age>26))
+        {
+            Console.WriteLine("Customer found");  //o/p: Customer found
+        }
+        else
+        {
+            Console.WriteLine("Customer Not found");
+        }
+
+        /// (3) Find(); it returns first matching Element
+
+        Customer c = Customers.Find(cust=>cust.salary> 20000);
+        Console.WriteLine("Result: {0}",c.name);  //o/p: Result : suresh
+
+        /// (4) FindLast(); it returns last matching Element
+
+        Customer l = Customers.FindLast(cust => cust.salary > 20000);
+        Console.WriteLine("Result: {0}", l.name);  //o/p: Result : rajesh
+
+        /// (5) FindAll(); it returns All matching Elements
+
+        List<Customer> allcust = Customers.FindAll(cust => cust.salary > 20000);
+        foreach(Customer cst in allcust){
+            Console.Write("id: {0} - name: {1} - sal: {2}",  cst.id, cst.name, cst.salary);
+            // o/p: id: 2 - name: suresh - sal: 30000   id: 3 - name: rajesh - sal: 50000
+        }
+
+        /// (6) FindIndex(); it returns first index matching position
+        int index = Customers.FindIndex(cust => cust.salary > 20000);
+        Console.WriteLine("Index: {0}", index);  //o/p:  Index:1
+
+        int index2 = Customers.FindIndex(2 , cust => cust.salary > 20000);
+        Console.WriteLine("Index2: {0}", index2);  //o/p:  Index:2
+
+        /// (7) FindLastIndex(); it returns last index matching position
+        int lindex = Customers.FindLastIndex(cust => cust.salary > 20000);
+        Console.WriteLine("Index: {0}", lindex);  //o/p:  Index:2
+
+    } 
+}
+
+public class Customer
+{
+    public int    id    {get; set;}
+    public string name  {get; set;}
+    public int    age   {get; set;}
+    public int    salary{get; set;}
+}

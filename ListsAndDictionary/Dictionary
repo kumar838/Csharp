@@ -1,0 +1,100 @@
+//Dictionary
+using System;
+using System.Collections.Generic; // For Dictionary
+class Program
+    {
+        static void Main(string[] args)
+        {
+
+        /// create instance for Customer Object
+        Customer Customer1 = new Customer()
+        {id=1,name="kumar", age=27,salary=20000};
+
+        Customer Customer2 = new Customer()
+        {id = 2, name = "suresh", age = 28, salary = 30000 };
+
+        Customer Customer3 = new Customer()
+        {id = 3, name = "rajesh", age = 26, salary = 50000 };
+
+        ///Creating A Dictionary
+        /// syntax:  Dictionary<keytype, Valuetype> Dictionaryvariable = new Dictionary<keytype, Valuetype>();
+       // Example:
+        //Dictionary<string, string> names = new Dictionary<string, string>();  
+               //names.Add("1", "Sonoo");
+
+        Dictionary<int, Customer> Dictvar = new Dictionary<int, Customer>();
+
+        /// Add Data to Dictionary
+        Dictvar.Add(Customer1.id, Customer1);
+        Dictvar.Add(Customer2.id, Customer2);
+        Dictvar.Add(Customer3.id, Customer3);
+
+        /// keys must be unique we can't add "Customer3.id" again it throws exception an item with same key already exist
+        // Dictvar.Add(Customer3.id, Customer3); 
+
+        /// checking if key is already exist or not
+        if (!Dictvar.ContainsKey(Customer3.id))
+        {
+            Dictvar.Add(Customer3.id, Customer3);
+        }
+
+        /// if key not availabel it throws keynot found Exception
+               //Customer Dictvarkey6 = Dictvar[6];
+
+        if (Dictvar.ContainsKey(6))
+        {
+            Customer Dictvarkey6 = Dictvar[6];
+        }
+
+        Customer Dictvarkey = Dictvar[2]; // 2 is the key to get info based on key
+    Console.WriteLine("for key 2: id:{0}-name:{1}-age{2}-salary{3}", Dictvarkey.id, Dictvarkey.name, Dictvarkey.age, Dictvarkey.salary);
+        // o/p: id:2-name:suresh-age28-salary30000
+
+        // foreach (var allcustomers in Dictvar) // var is also correct insted of KeyValuePair<int, Customer> 
+        foreach (KeyValuePair<int,Customer> allcustomers in Dictvar) {
+
+            Console.WriteLine(allcustomers.Key); //o/p: 1 2 3
+            Console.WriteLine(allcustomers.Value);// Customer Customer Customer
+
+            Customer cust=allcustomers.Value;
+        
+            Console.WriteLine("id:{0}-name:{1}-age:{2}-salary:{3}", cust.id, cust.name, cust.age,cust.salary);
+                /*output:
+                 id:1-name:kumar-age:27-salary:20000
+                 id:2-name:suresh-age:28-salary:30000
+                 id:3-name:rajesh-age:26-salary:50000
+               */
+        }
+
+        /// to get only keys
+        foreach (int key in Dictvar.Keys)
+        {
+            Console.WriteLine(key); //o/p: 1 2 3
+        }
+
+        /// to get only values
+        foreach (Customer cust in Dictvar.Values)
+        {
+            Console.WriteLine("id:{0}-name:{1}-age:{2}-salary:{3}", cust.id, cust.name, cust.age, cust.salary);
+            /*output:
+                id:1-name:kumar-age:27-salary:20000
+                id:2-name:suresh-age:28-salary:30000
+                id:3-name:rajesh-age:26-salary:50000
+            */
+        }
+
+    }
+}
+
+public class Customer
+{
+    public int    id    {get; set;}
+    public string name  {get; set;}
+    public int    age   {get; set;}
+    public int    salary{get; set;}
+}
+
+
+
+
+

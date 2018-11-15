@@ -1,0 +1,52 @@
+//List Useful methods
+using System;
+using System.Collections.Generic; // For list
+using System.Collections.ObjectModel; // For AsReadOnly() method
+
+class Program
+{
+    static void Main(string[] args)
+    {
+
+        Customer Customer1 = new Customer()
+        { id = 1, name = "kumar", age = 27, salary = 20000 };
+
+        Customer Customer2 = new Customer()
+        { id = 2, name = "suresh", age = 28, salary = 10000 };
+
+        Customer Customer3 = new Customer()
+        { id = 3, name = "rajesh", age = 26, salary = 50000 };
+
+        List<Customer> Customers = new List<Customer>(100); 
+
+        Customers.Add(Customer1);
+        Customers.Add(Customer2);
+        Customers.Add(Customer3);
+
+        //Method4:  TrimExcess() changes the capacity of list to max values contained list.
+        Console.WriteLine("Before Capacity: "+ Customers.Capacity); //o/p: Before Capacity: 100
+        Customers.TrimExcess();
+        Console.WriteLine("After Capacity: " + Customers.Capacity); //o/:p After Capacity: 3
+     
+
+        //Method1:  TrueForAll() it returns boolean value (true or false)
+        Console.WriteLine("Are all salaries greter than 5000 {0}" , Customers.TrueForAll(X => X.salary > 5000));
+        //o/p: true
+
+        //Method2:  AsReadOnly() we can't add or remove data to collection but we can retrive data
+        ReadOnlyCollection<Customer> Reaonlycollection = Customers.AsReadOnly();
+
+            // Reaonlycollection.(Add); //compile error
+           // Console.WriteLine(Reaonlycollection[1]);
+        Console.WriteLine( "items- " + Reaonlycollection.Count);  // o/p:items- 3
+    }
+}
+
+public class Customer 
+{
+    public int id { get; set; }
+    public string name { get; set; }
+    public int age { get; set; }
+    public int salary { get; set; }
+
+}
