@@ -1,0 +1,27 @@
+
+// Optional parameters
+/// method 2- using parameterArray
+using System;
+using System.Collections.Generic; // For list
+using System.Collections.ObjectModel; // For AsReadOnly() method
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        // AddNumbers(10, 20);   // 30
+        // AddNumbers(10, 20,40);   //output: 70
+        AddNumbers(10, 20,new object[]{ 30,40,50});  //output: 150
+    }
+
+    public static void AddNumbers(int A,int B, params object[] restofvalues)  // 'params object[] restofvalues ' must be last parameter
+    {
+        int sum = A + B;
+        if (restofvalues != null) {
+            foreach (int i in restofvalues) { 
+                sum += i;
+                    }
+                }
+          Console.WriteLine(sum);
+        }
+}
