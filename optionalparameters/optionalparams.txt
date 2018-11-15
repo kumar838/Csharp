@@ -1,0 +1,5 @@
+There are 4 ways that can be used to make method parameters optional.
+1. Use parameter arrays
+2. Method overloading
+3. Specify parameter defaults
+4. Use OptionalAttribute that is present in System.Runtime.InteropServices namespace
