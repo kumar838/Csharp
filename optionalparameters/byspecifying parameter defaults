@@ -1,0 +1,28 @@
+// Optional parameters
+/// method 3-  by specifying parameter defaults
+using System;
+using System.Collections.Generic; // For list
+using System.Collections.ObjectModel; // For AsReadOnly() method
+
+class Program
+{
+    static void Main(string[] args)
+    {
+      
+        //AddNumbers(10, 20);  // output: 30
+        AddNumbers(10, 20,new int[] { 20, 30, 40 });  // output: 120
+    }
+   
+     public static void AddNumbers(int A,int B, int[] restofvalues=null)  
+    {
+        int sum = A + B;
+        if (restofvalues != null) {
+            foreach (int i in restofvalues) { 
+                sum += i;
+                    }
+                }
+          Console.WriteLine(sum);
+     }
+}
+
+
