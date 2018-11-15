@@ -1,0 +1,23 @@
+// Optional parameters
+/// method 3-  named parameters
+using System;
+using System.Collections.Generic; // For list
+using System.Collections.ObjectModel; // For AsReadOnly() method
+
+class Program
+{
+    static void Main(string[] args)
+    {
+
+        // Test(10);  //output: 60 (a=10,b=20,c=30)
+        //Test(10,15);  //output: 55 (a=10,b=15,c=30)
+        // Test(10,15,25);  //output: 50 (a=10,b=15,c=20)
+        Test(10, c:5);  //output: 35  (a=10,b=20,c=5)
+    }
+   
+     public static void Test(int a,int b=20,int c=30)  
+    {
+        int sum = a + b + c;
+        Console.WriteLine(sum);
+     }
+}
