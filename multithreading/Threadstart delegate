@@ -1,0 +1,76 @@
+/// Multithreading
+using System;
+using System.Threading;  // All thread classes are avialable in this namespace
+class Program
+{
+    static void Main(string[] args)
+    {
+        //Numbers.PrintNums(); // Direct calling
+
+        /// Thread overload functions
+        /* 
+        1. public Thread(ThreadStart start);
+
+        2. public Thread(ParameterizedThreadStart start);
+
+        3. public Thread(ThreadStart start, int maxStackSize);
+
+        4. public Thread(ParameterizedThreadStart start, int maxStackSize);
+        */
+
+        /// method1
+        /// Creating a Thread
+        //  Thread T1 = new Thread(new ThreadStart(Numbers.PrintNums));  // approach 1
+        //  Thread T1 = new Thread(delegate() { Numbers.PrintNums(); }); // approach 2
+        // Thread T1 = new Thread(new ThreadStart(Numbers.PrintNums)); === Thread T1 = new Thread(Numbers.PrintNums);
+
+        /// it is called as thread delegate . delegate is a type safe function pointer
+       // Thread T1 = new Thread(Numbers.PrintNums);// approach 3
+                                                  /// new ThreadStart() takes internally
+
+
+        Thread T1 = new Thread(()=> Numbers.PrintNums());// approach 4(lamda functions)
+        /// To start a Thread
+        T1.Start(); // o/p: 1 2 3 4 5 6 7 8 9 10
+
+
+        /// For nonStatic Function create instance
+        Numbers num1 = new Numbers();
+        Thread T2 = new Thread(num1.PrintNums1);
+        /// To start a Thread
+        T2.Start(); // o/p: 1 2 3 4 5 6 7 8 9 10
+
+    }
+
+}
+
+
+class Numbers
+{ 
+    public static void PrintNums()
+    {
+            // Thread.Sleep(5000);   /// the below prg executes after 5 seconds
+        for (int i = 1; i <= 10; i++)
+        {
+            Console.WriteLine(i);
+        }
+
+    }
+
+
+    public  void PrintNums1()  // Instance method
+    {
+        Thread.Sleep(5000);   /// the below prg executes after 5 seconds
+        for (int i = 1; i <= 10; i++)
+        {
+            Console.WriteLine(i);
+        }
+
+    }
+}
+
+
+
+
+
+
