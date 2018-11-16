@@ -29,7 +29,7 @@ namespace ThreadStartDelegateExample
         public void ComputeSumOfNumbers()
         {
             int sum = 0;
-            for (int i = 1; i[= _target; i++)
+            for (int i = 1; i<= _target; i++)
             {
                 sum = sum + i;
             }
