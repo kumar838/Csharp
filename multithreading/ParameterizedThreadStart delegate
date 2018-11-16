@@ -1,0 +1,34 @@
+/// Multithreading
+using System;
+using System.Threading;  // All thread classes are avialable in this namespace
+class Program
+{
+    static void Main(string[] args)
+    {
+        Console.WriteLine("Enter Target number");
+        object target =Console.ReadLine();
+        Thread T1 = new Thread(Numbers.Addnum);
+        T1.Start(target);
+    }
+
+}
+
+
+class Numbers
+{
+    public static void Addnum(object target) {
+
+        int number=0;
+        if (int.TryParse(target.ToString(), out number))
+        {
+            for (int i = 0; i <= number; i++)
+            {
+                Console.WriteLine(i);
+            }
+        }
+    }
+
+
+  
+}
+
